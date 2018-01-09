@@ -6,21 +6,40 @@
     <title>Titel</title>
 
 		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   </head>
   <body>
 
 	<div id="app">
-		<p>{{ title }}</p>
+    <p>{{ userId }}</p>
+    <p>{{ id }}</p>
+    <p>{{ title }}</p>
+    <p>{{ body }}</p>
 	</div>
 	<script>
 
-	new Vue({
-		el: '#app',
-		data: {
-			title: 'Hello World!'
-		}
-	})
+  $(function(){
+    var root = 'https://jsonplaceholder.typicode.com';
+
+    $.ajax({
+      url: root + '/posts/1',
+      method: 'GET'
+    }).done(function(data) {
+      console.log(data);
+      startnewapp(data);
+    });
+
+
+  })
+
+
+  function startnewapp(data) {
+  	var newapp = new Vue({
+  		el: '#app',
+  		data:data
+  	})
+  }
 
 	</script>
 
