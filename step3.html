@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Titel</title>
+
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  </head>
+  <body>
+
+	<div id="app">
+    <span v-bind:title="message">
+      Bleibe mit dem Cursor über mir :-P
+    </span>
+	</div>
+
+
+	<script>
+  	var app = new Vue({
+  		el: '#app',
+  		data: {
+        message: "diese Seite wurde geladen am " + new Date().toLocaleString()
+      }
+  	})
+
+	</script>
+
+  <div id="app3">
+    <span v-if="seen">now you see me</span>
+  </div>
+
+  <script>
+    var app3 = new Vue({
+      el: '#app3',
+      data: {
+        seen: true
+      }
+    })
+  </script>
+
+  <div id="app4">
+    <ol>
+      <li v-for="book in books">
+        {{ book.title }}
+        {{ book.description }}
+      </li>
+    </ol>
+  </div>
+
+  <script>
+    var app4 = new Vue({
+      el: "#app4",
+      data: {
+        books: [
+          {title: "erster Titel"},
+          {title: "zweiter Titel"},
+          {},
+          {title: "20sldfj lulksdjf"}
+        ]
+      }
+    })
+  </script>
+
+
+
+  <div id="app5">
+    <div>{{ message }}</div>
+    <button v-on:click="reverseMessage">Reverse</button>
+  </div>
+
+  <script>
+    var app5 = new Vue({
+      el: "#app5",
+      data: {
+        message: "das ist meine message"
+      },
+      methods:{
+        reverseMessage: function() {
+          this.message = this.message.split('').reverse().join('');
+        }
+      }
+    })
+  </script>
+
+
+
+  <div id="app6">
+    <p>{{ message }}</p>
+    <input v-model="message">
+  </div>
+
+  <script>
+    var app6 = new Vue({
+      el: '#app6',
+      data: {
+        message: 'hier ist der Inhalt des Inputs'
+      }
+    });
+  </script>
+
+  </body>
+</html>
